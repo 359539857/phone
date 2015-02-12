@@ -1,0 +1,58 @@
+##获取转码后的字符串 
+#macro(isNotBlank $field)#if($field)$StringUtils.isNotBlank($field)#end#end
+#macro(isNotEmpty $field)#if($field)$StringUtils.isNotEmpty($field)#end#end
+
+##获取URL重写后的链接       
+##macro(rewriteURL $url)$UrlUtil.rewriteURL($response,$request,$url)#end
+
+#macro(forString $field)
+	#if($field && !$field.trim().isEmpty())
+		 #set($strs = $field.split(","))
+	#end
+#end
+
+#macro(replaceAll $str $str1 $str2)
+	#if($str)
+		$str.toString().replaceAll($str1,$str2);
+	#end
+#end
+
+#macro(pageRender $url $pageNumber)
+		#if($dto.getPointValue("page.totalPage") != 0)
+			<ul class="pagination pull-right">
+			  #set($pre_page = $dto.getPointValue("page.pageNo") - 1)
+			  #set($next_page = $dto.getPointValue("page.pageNo") + 1)
+			  #set($curr_page = $dto.getPointValue("page.pageNo"))
+			  #set($last_page = $dto.getPointValue("page.totalPage"))
+			  
+			  <li #if($dto.getPointValue("page.pageNo") == 1)class="disabled"#end><a href="#if($curr_page != 1)$PropertyConfigurer.getContextPropertyStr("module.url")/$url&pageNo=1&forword=$dto.getValue("forword")#else javascript:void(0); #end">首页</a></li>
+			  <li #if($dto.getPointValue("page.pageNo") == 1)class="disabled"#end><a href="#if($curr_page != 1)$PropertyConfigurer.getContextPropertyStr("module.url")/$url&pageNo=$pre_page&forword=$dto.getValue("forword")#else javascript:void(0); #end">上一页</a></li>
+			  
+			  #if($last_page > $pageNumber)
+			  	#set($startIndex = $curr_page)
+			  	#set($endIndex=0)
+			  	#if($last_page - $pageNumber > ${startIndex})
+			  		#set($endIndex = $curr_page + $pageNumber)
+			  	#else 
+			  		#set($startIndex = $last_page - $pageNumber)
+			  		#set($endIndex = $last_page)
+			  	#end
+			  	  #foreach($item in [$startIndex..$endIndex])
+				  	<li #if($curr_page == $item)class="active"#end><a href="$PropertyConfigurer.getContextPropertyStr("module.url")/$url&pageNo=$item&forword=$dto.getValue("forword")">$item</a></li>
+				  #end
+				  ##<li><a href="javascript:void(0);">...</a></li>
+			  #else
+				  #foreach($item in [1..$dto.getPointValue("page.totalPage")])
+				  	<li #if($curr_page == $item)class="active"#end><a href="$PropertyConfigurer.getContextPropertyStr("module.url")/$url&pageNo=$item&forword=$dto.getValue("forword")">$item</a></li>
+				  #end
+			  #end
+			  #set($pageNo = $dto.getPointValue("page.pageNo") + 1)
+			  <li #if($curr_page == $last_page)class="disabled"#end><a href="#if($curr_page < $last_page)$PropertyConfigurer.getContextPropertyStr("module.url")/$url&pageNo=$next_page&forword=$dto.getValue("forword")#else javascript:void(0); #end">下一页</a></li>
+			  <li #if($curr_page == $last_page)class="disabled"#end><a href="#if($curr_page < $last_page)$PropertyConfigurer.getContextPropertyStr("module.url")/$url&pageNo=$last_page&forword=$dto.getValue("forword")#else javascript:void(0); #end">尾页</a></li>
+			</ul>
+		#end
+#end
+
+
+
+

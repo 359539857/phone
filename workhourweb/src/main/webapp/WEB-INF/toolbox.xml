@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolbox>
+	<xhtml>true</xhtml>
+	<tool>
+		<key>context</key>
+		<scope>request</scope>
+		<class>org.apache.velocity.tools.view.tools.ContextTool</class>
+	</tool>
+	<tool>
+		<key>text</key>
+		<scope>request</scope>
+		<class>org.apache.velocity.tools.view.tools.ViewResourceTool</class>
+	</tool>
+	<tool>
+		<key>link</key>
+		<scope>request</scope>
+		<class>org.apache.velocity.tools.struts.StrutsLinkTool</class>
+	</tool>
+	<tool>
+		<key>math</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.MathTool</class>
+	</tool>
+	<data type="string">
+		<key>tmplpath</key>
+		<value>/WEB-INF/pages</value>
+	</data>
+	<tool>
+		<key>map</key>
+		<class>java.util.HashMap</class>
+	</tool>
+	<tool>
+		<key>date</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.DateTool</class>
+	</tool>
+	<tool>
+		<key>StringUtils</key>
+		<scope>application</scope>
+		<class>org.apache.commons.lang.StringUtils</class>
+	</tool>
+	<tool>
+		<key>DateUtils</key>
+		<scope>application</scope>
+		<class>com.tandong.workhour.utils.DateUtil</class>
+	</tool>
+	<tool>
+		<key>PropertyConfigurer</key>
+		<scope>application</scope>
+		<class>com.tandong.workhour.utils.PropertyConfigurer</class>
+	</tool>
+</toolbox>

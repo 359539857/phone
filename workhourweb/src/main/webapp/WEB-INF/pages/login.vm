@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>工时管理</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png"
+	href="AmazeUI-2.2.1/assets/i/favicon.png">
+<link rel="stylesheet" href="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/css/amazeui.min.css">
+<link rel="stylesheet" href="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/css/app.css">
+</head>
+<body>
+	<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 不提供支持。 请 <a
+  href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+	<div class=".am-container">
+		<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+		  <h1 class="am-header-title">
+		    <a href="javascript:void(0);" class="">智能工时</a>
+		  </h1>
+		</header>
+		<div class="content">
+			<form method="post" class="loginForm am-form am-form-horizontal" data-am-validator style="margin-top:100px;" action="$PropertyConfigurer.getContextPropertyStr("context_url")/auth">
+			  <div class="am-form-group">
+			  	<label for="username" class="am-u-sm-3 am-form-label am-sm-only-text-right">用户名:</label>
+			  	<div class="am-u-sm-8 am-u-end">
+			  		<input type="text" name="username" required class="am-form-field am-input-lg" id="username" placeholder="输入你的用户名" value="">
+			  	</div>
+			  </div>
+			  <div class="am-form-group">
+			  	<label for="ppassword" class="am-u-sm-3 am-form-label am-sm-only-text-right">密码:</label>
+			  	<div class="am-u-sm-8 am-u-end">
+			  		<input type="password" required class="am-form-field am-input-lg" name="ppassword" id="ppassword" placeholder="输入你的密码" value="">
+			  		<input type="hidden" name="password" id="password" placeholder="输入你的密码" value="">
+			  	</div>
+			  </div>
+              <div class="am-form-group">
+                  <label for="remember-me" class="am-u-sm-4 am-u-sm-offset-3 am-form-label am-sm-only-text-left">
+    		       <input id="remember-me" type="checkbox">
+    		      	  记住密码
+    		      </label>
+              </div>
+		      <div class="am-form-group">
+		      	<div class="am-u-sm-8 am-u-end am-u-sm-offset-3">
+		       		 <input type="button" value="登 录" class="login-btn am-btn am-btn-primary am-btn-xl am-center am-radius am-btn-block ">
+		        </div>
+		      </div>
+		    </form>
+		</div>
+	</div>
+
+	<script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/jquery.min.js"></script>
+	<script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/amazeui.js"></script>
+	<script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/handlebars.min.js"></script>
+	<script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/amazeui.widgets.helper.js"></script>
+	<script src="$PropertyConfigurer.getContextPropertyStr("context_url")/rte/base64.js"></script>
+    <script src="$PropertyConfigurer.getContextPropertyStr("context_url")/rte/common.js"></script>
+	
+	<script>
+		 $(function() {
+		 	$(".login-btn").on("click",function(){
+		 		var b = new Base64();
+		 		$("#password").val(b.encode($("#ppassword").val()));
+		 		$(".loginForm").submit();
+		 	})
+            
+            $("#remember-me").on("click",function(){
+                if($(this).get(0).checked == true){
+                    var b = new Base64();
+                    var un = b.encode($("#username").val());
+                    var pw = b.encode($("#ppassword").val());
+                    var tm = un + "-" + pw;
+                    var cookie = new Cookie();
+                    cookie.addCookie("userinfo",tm);
+                }
+            });
+            
+            function pageload(){
+                var cookie = new Cookie();
+                var b = new Base64();
+                var tm = cookie.getCookie("userinfo");
+                if(tm != ""){
+                    var tms = tm.split("-");
+                    var username = b.decode(tms[0]);
+                    var ppassword = b.decode(tms[1]);
+                    $("#username").val(username);
+                    $("#password").val(ppassword);
+                }
+            }
+            pageload();
+		 })
+		 
+	</script>
+</body>
+</html>

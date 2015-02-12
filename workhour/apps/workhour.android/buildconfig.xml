@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration
+    xmlns="http://schemas.genuitec.com/myeclipse/mobile"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schemas.genuitec.com/myeclipse/mobile http://schemas.genuitec.com/myeclipse/mobile/buildconfig_0_2.xsd"
+    version="0.2">
+	
+	<configId>2dabe688e3d645e8b52eb2f88a896838</configId>
+	
+	<appId>workhour.android</appId>
+	<appName>workhour</appName>
+	<packageName>myeclipse.workhour</packageName>
+	<outputFileName>workhour.apk</outputFileName>	
+	<appVersion>1.0.0</appVersion>
+	<appLanguage />
+	<author email="359539857@qq.com" name="peter" />
+
+	<supportedOrientation>ALL</supportedOrientation>
+
+	<platform>
+	    <android>
+			<targetDisplaySizes>
+			    <item>XL</item>
+			    <item>L</item>
+			    <item>M</item>
+			    <item>S</item>
+			</targetDisplaySizes>    
+			<permissions>
+			    <item>NETWORK</item>
+			</permissions>		   
+	    </android>
+	</platform>
+
+	<sourceFolders>
+		<item exclusionPatterns="" inclusionPatterns="www/" />
+	</sourceFolders>
+	<startupURI>http://10.27.122.63:8080/workhourweb/index</startupURI>
+	
+
+	<brandingImages>
+	
+		<app-image image-path="apps/workhour.android/images/36.png"
+			image-size="36x36" image-type="ICON" />
+		<app-image image-path="apps/workhour.android/images/48.png"
+			image-size="48x48" image-type="ICON" />
+		<app-image image-path="apps/workhour.android/images/72.png"
+			image-size="72x72" image-type="ICON" />
+		<app-image image-path="apps/workhour.android/images/96.png"
+			image-size="96x96" image-type="ICON" />
+	</brandingImages>
+
+</configuration>

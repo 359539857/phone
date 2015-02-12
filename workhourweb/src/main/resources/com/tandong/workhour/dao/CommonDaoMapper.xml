@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tandong.workhour.dao.CommonDao">
+
+	<insert id="addObject" parameterType="DTO">
+		<selectKey resultType="java.lang.Integer" keyProperty="id">
+			SELECT
+			LAST_INSERT_ID()
+		</selectKey>
+
+        <if test="operatetype != null and operatetype == 'addStrategy'">
+            insert into
+            tb_work_strategy(id,name,rule,priority,createUser,createDate)values(#{id},
+            #{name},#{rule},#{priority},#{username},NOW())
+        </if>
+
+		<if test="operatetype != null and operatetype == 'addUser'">
+			insert into
+			sys_user(id,username,password,lastname,familyname,createDate)values(#{id},
+			#{username},#{password},#{lastname},#{familyname},#{createDate})
+		</if>
+
+		<if test="operatetype != null and operatetype == 'addProject'">
+			insert into
+			tb_work_project(id,name,description,identifier,createTime,updateTime)values(#{id},
+			#{name},#{description},#{identifier},#{createTime},#{updateTime})
+		</if>
+
+		<if test="operatetype != null and operatetype == 'addIssue'">
+			insert into
+			tb_work_issue(id,parent,projectid,status,priority,subject,assignedtoId,authorId,startdate)values(#{id},
+			#{parent},#{projectid},#{status},#{priority},#{subject},#{assignedtoId},#{authorId},#{startdate})
+		</if>
+
+		<if test="operatetype != null and operatetype == 'addHour'">
+			insert into
+			tb_work_hour(id,issueId,projectId,projectName,userName,activityName,hour,comment,createdOn,updatedOn,spentOn)values(#{id},
+			#{issueId},#{projectId},#{projectName},#{userName},#{activityName},#{hour},#{comment},#{createdOn},#{updatedOn},#{spentOn})
+		</if>
+	</insert>
+
+	<update id="updateObject" parameterType="DTO">
+		<if test="operatetype != null and operatetype == 'updateUser'">
+			update sys_user set password = #{password} where username
+			= #{username}
+		</if>
+	</update>
+
+	<select id="findCount" parameterType="DTO" resultType="java.lang.Integer">
+
+		<if test="operatetype != null and operatetype == 'getProject'">
+			select count(id) from tb_work_project where id = #{id}
+		</if>
+		<if test="operatetype != null and operatetype == 'getIssue'">
+			select count(id) from tb_work_issue where id = #{id}
+		</if>
+		<if test="operatetype != null and operatetype == 'getHour'">
+			select count(id) from tb_work_hour where id = #{id}
+		</if>
+
+		<if test="operatetype != null and operatetype == 'getUser'">
+			select count(id) from sys_user where username =
+			#{username}
+		</if>
+
+		<if
+			test="operatetype != null and operatetype == 'getUserByNameAndPassword'">
+			select count(id) from sys_user where username = #{username} and
+			password = #{password}
+		</if>
+	</select>
+
+	<select id="findObjectList" parameterType="DTO" resultMap="commonMap">
+		<if test="operatetype != null and operatetype == 'getLastSevenDayHourList'">
+			select
+			e.subject,sum(h.hour) as hour,DATE_FORMAT(h.spentOn,'%Y-%m-%d') as spentOn
+			from tb_work_issue e,tb_work_hour h where h.username = #{username}
+			and e.id = h.issueId and h.spentOn between DATE_SUB(NOW(),INTERVAL
+			7 DAY) and NOW() 
+			
+			group by DATE_FORMAT(h.spentOn,'%Y-%m-%d')
+			
+			order by h.spentOn desc
+		</if>
+		<if
+			test="operatetype != null and operatetype == 'getLastMonthDayHourPageList'">
+			select e.subject,sum(h.hour) as hour,DATE_FORMAT(h.spentOn,'%Y-%m-%d') as
+			spentOn from tb_work_issue e,tb_work_hour h where h.username =
+			#{username} and e.id = h.issueId and h.spentOn between
+			DATE_SUB(NOW(),INTERVAL 30 DAY) and NOW() group by DATE_FORMAT(h.spentOn,'%Y-%m-%d') order by h.createdOn desc
+		</if>
+
+		<if test="operatetype != null and operatetype == 'getHourPageList'">
+			select e.subject,h.hour,DATE_FORMAT(h.spentOn,'%Y-%m-%d') as
+			spentOn from tb_work_issue e,tb_work_hour h
+			<where>
+				h.username = #{username} and e.id = h.issueId
+				<if test="subject != null and subject != ''">
+					and e.subject like CONCAT('%','${subject}','%' )
+				</if>
+			</where>
+			order by h.spentOn desc
+		</if>
+		
+		<if test="operatetype != null and operatetype == 'getIssuePageList'">
+			select * from (
+			(select e.*,(e.id + 1000000) as sortField,p.identifier as projectKey from tb_work_issue e , tb_work_project p
+			<where>
+			     e.projectid = p.id
+			    <if test="userid != null and userid != ''">
+                    and  (e.assignedtoId = #{userid} or  e.authorId = #{userid2})
+                </if>
+                <if test="subject != null and subject != ''">
+                    and  e.subject like CONCAT('%','${subject}','%' )
+                </if>
+				<if test="subject != null and subject != ''">
+					and  e.subject like CONCAT('%','${subject}','%' )
+				</if>
+				<if test="id != null and id != ''">
+                    and id = #{id}
+                </if>
+			</where>
+			order by e.startdate desc)
+			union
+			(select e.*,e.id as sortField,p.identifier as projectKey  from tb_work_issue e , tb_work_project p
+            <where>
+                 e.projectid = p.id
+                <if test="subject != null and subject != ''">
+                    and  e.subject like CONCAT('%','${subject}','%' )
+                </if>
+                <if test="id != null and id != ''">
+                    and id = #{id}
+                </if>
+            </where>
+            order by e.startdate desc) 
+			)as issue order by sortField desc
+		</if>
+        
+        <if test="operatetype != null and operatetype == 'getStrategyPageList'">
+            select * from tb_work_strategy where createUser = #{username} order by priority
+        </if>
+        
+		<if test="operatetype != null and operatetype == 'getUserList'">
+			select * from sys_user
+		</if>
+	</select>
+
+	<resultMap type="DTO" id="commonMap">
+		<id column="id" javaType="java.lang.Long" property="id" />
+	</resultMap>
+</mapper>

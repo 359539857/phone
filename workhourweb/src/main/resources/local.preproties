@@ -1,0 +1,19 @@
+redmine_url = http://redmine.china-liantong.com:8000
+workhour.noAuthenticationFilterUrl = ^/workhourweb((/login|/auth|/register|/randcode|/doregister|/checkUserNameRepeat|/swfupload|/uploadAdvert|/uploadStartAdvert|/uploadWeather|/Common/.*)|(/checkcode/(.*?))|(/static/(.*?))|(/rte/(.*?))|(/AmazeUI-2.2.1/(.*?))|(/css/(.*?))|(/favicon/(.*?)))$
+context_url = http://10.27.122.63:8080/workhourweb
+
+
+jdbc.driverClass=com.mysql.jdbc.Driver
+jdbc.url=jdbc\:mysql\://10.27.122.63\:3306/cloud?characterEncoding\=utf8
+jdbc.username=root
+jdbc.password=abc123
+c3p0.maxPoolSize=300
+c3p0.minPoolSize=1
+c3p0.initialPoolSize=2
+c3p0.maxIdleTime=60
+c3p0.acquireIncrement=5
+c3p0.maxStatements=0
+c3p0.idleConnectionTestPeriod=60
+c3p0.acquireRetryAttempts=30
+c3p0.breakAfterAcquireFailure=true
+c3p0.testConnectionOnCheckout=false

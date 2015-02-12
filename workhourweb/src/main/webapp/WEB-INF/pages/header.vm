@@ -1,0 +1,44 @@
+<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+          #if($dto.getValue("forword") == "addlist" || $dto.getValue("forword") == "search" || $dto.getValue("forword") == "zhineng")
+            <div class="am-header-left am-header-nav">
+            <a href="$PropertyConfigurer.getContextPropertyStr("context_url")/index?forword=index" class="">
+              <i class="am-header-icon am-icon-home"></i>
+            </a>
+          </div>
+          #elseif($dto.getValue("forword") != "index")
+             <div class="am-header-left am-header-nav">
+            <a href="javascript:history.go(-1);" class="">
+              <i class="am-header-icon am-icon-arrow-left"></i>
+            </a>
+          </div>
+          #end
+          
+          <h1 class="am-header-title">
+            <a href="javascript:void(0);" class="">
+                #if($dto.getValue("forword") == "index")
+                   <i class="am-header-icon am-icon-home"></i>
+                   <a href="javascript:void(0);" class="">首页</a>
+                #elseif($dto.getValue("forword") == "addlist")
+                    <i class="am-header-icon am-icon-question"></i>
+                   <a href="javascript:void(0);" class="">问题列表</a>
+                #elseif($dto.getValue("forword") == "add")
+                    <i class="am-header-icon am-icon-plus"></i>
+                   <a href="javascript:void(0);" class="">添加工时</a>
+                #elseif($dto.getValue("forword") == "search")
+                    <i class="am-header-icon am-icon-search"></i>
+                   <a href="javascript:void(0);" class="">搜索工时</a>
+                #elseif($dto.getValue("forword") == "zhineng")
+                    <i class="am-header-icon am-icon-tachometer"></i>
+                   <a href="javascript:void(0);" class="">智能工时</a>
+                #elseif($dto.getValue("forword") == "issuetimedetail")
+                    <i class="am-header-icon am-icon-reorder"></i>
+                   <a href="javascript:void(0);" class="">工时列表</a>
+                #end
+            
+          </h1>
+          <div class="am-header-right am-header-nav">
+            <a href="$PropertyConfigurer.getContextPropertyStr("context_url")/logout" class="">
+              <i class="am-header-icon am-icon-sign-out"></i>
+            </a>
+          </div> 
+</header>

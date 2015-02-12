@@ -1,0 +1,125 @@
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Amaze UI Widget</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png"
+	href="AmazeUI-2.2.1/assets/i/favicon.png">
+<link rel="stylesheet" href="AmazeUI-2.2.1/assets/css/amazeui.min.css">
+<link rel="stylesheet" href="AmazeUI-2.2.1/assets/css/app.css">
+</head>
+<body>
+	<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 不提供支持。 请 <a
+  href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+	<div class=".am-container">
+		<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+		  <div class="am-header-left am-header-nav">
+		    <a href="index.html" class="">
+		      <i class="am-header-icon am-icon-home"></i>
+		    </a>
+		  </div>
+		  <h1 class="am-header-title">
+		  	<i class="am-header-icon am-icon-plus"></i>
+		    <a href="javascript:void(0);" class="">添加工时</a>
+		  </h1>
+		</header>
+		<div class="content">
+			<form class="am-form am-form-horizontal" style="margin-top:20px;">
+				
+				<div class="am-form-group">
+				    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">问题</label>
+				    <div class="am-u-sm-10">
+				      <input type="password" id="doc-ipt-pwd-2" placeholder="请选择一个有效的日期">
+				    </div>
+				</div>
+				
+				<div class="am-form-group">
+				    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">日期</label>
+				    <div class="am-u-sm-10">
+				      <input type="password" id="doc-ipt-pwd-2" placeholder="请选择一个有效的日期">
+				    </div>
+				</div>
+				
+				<div class="am-form-group">
+				    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">小时</label>
+				    <div class="am-u-sm-10">
+				      <input type="password" id="doc-ipt-pwd-2" placeholder="请选择一个有效的日期">
+				    </div>
+				</div>
+			
+			    <div class="am-form-group">
+			      <label for="doc-ta-1" class="am-u-sm-2 am-form-label">注释</label>
+			      <div class="am-u-sm-10">
+			     	 <textarea class="" rows="5" id="doc-ta-1"></textarea>
+			      </div>
+			    </div>
+			    
+			    <div class="am-form-group">
+			      <label for="btngroup-s" class="am-u-sm-2 am-form-label">活动</label>
+			      <div class="am-u-sm-10">
+				      <div id="btngroup-s" class="am-btn-group">
+						  <button type="button" class="am-btn am-btn-default am-round">设计</button>
+						  <button type="button" class="am-btn am-btn-default am-round">开发</button>
+						  <button type="button" class="am-btn am-btn-default am-round">部署</button>
+					  </div>
+				  </div>
+			    </div>
+				<br>
+			    <p class="am-text-center" style="width:100%"><button type="button" class="am-btn am-btn-success am-btn-xl" style="width:300px;">保存</button></p>
+			</form>
+		</div>
+		<div  data-am-widget="navbar" class="am-navbar am-cf am-navbar-default ">
+			<ul class="am-navbar-nav am-cf am-avg-sm-4">
+				<li>
+					<a href="javascript:void(0)" class="am-btn-secondary"> 
+						<span class="am-icon-plus"></span> <span class="am-navbar-label">添加</span>
+					</a>
+				</li>
+				<li>
+					<a href="search.html" class=""> 
+						<span class="am-icon-search"></span> <span class="am-navbar-label">查询</span>
+					</a>
+				</li>
+				<li>
+					<a href="zhineng.html" class=""> 
+						<span class="am-icon-tachometer"></span> <span class="am-navbar-label">智能</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<script src="AmazeUI-2.2.1/assets/js/jquery.min.js"></script>
+	<script src="AmazeUI-2.2.1/assets/js/amazeui.js"></script>
+	<script src="AmazeUI-2.2.1/assets/js/handlebars.min.js"></script>
+	<script src="AmazeUI-2.2.1/assets/js/amazeui.widgets.helper.js"></script>
+	<script>
+		$(function() {
+			var url = URL.auth_url;
+			$.get(url,function(data){
+				try{
+					if(data.code == 200){
+						
+					}else{
+						
+					}
+				}catch(e){
+					console.log(e);
+					
+				}
+			},"json");
+		})
+	</script>
+</body>
+</html>

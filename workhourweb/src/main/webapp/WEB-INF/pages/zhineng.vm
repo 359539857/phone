@@ -1,0 +1,128 @@
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>工时管理</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png"
+    href="AmazeUI-2.2.1/assets/i/favicon.png">
+<link rel="stylesheet" href="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/css/amazeui.min.css">
+<link rel="stylesheet" href="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/css/app.css">
+</head>
+<body>
+    <!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 不提供支持。 请 <a
+  href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+    <div >
+        #parse("header.vm")
+        <div class="content">
+        
+            <div class="am-tabs am-tabs-d2" data-am-widget="tabs" style="padding: 0px;margin: 0px;">
+                <ul class="am-tabs-nav am-cf">
+                 <li class="#if(${requestDTO.size()} > 0)am-active#end"><a href="javascript: void(0)">列表</a></li>
+                 <li class="#if(${requestDTO.size()} <= 0)am-active#end"><a href="javascript: void(0)">添加</a></li>
+                </ul>
+
+                <div class="am-tabs-bd" style="border:0px solid #FFFFFF;">
+                    <div class="am-tab-panel #if(${requestDTO.size()} > 0)am-active#end">
+                        <div data-am-widget="list_news" class="am-list-news am-list-news-default">
+                         <!--列表标题-->
+                            <div class="am-list-news-hd am-cf" >
+                             <!--带更多链接-->
+                              <a href="javascript:void(0);" style="padding-right:50%" class="">
+                                  <h2>名称</h2>
+                              </a>
+                              <a href="javascript:void(0);" style="position: absolute;right:45%" class="">
+                                 <h2>规则</h2>
+                              </a>
+                              <a href="javascript:void(0);" class=" am-fr">
+                                  <h2>优先级</h2>
+                              </a>
+                          </div>
+              
+                          <div class="am-list-news-bd" >
+                             <ul class="am-list">
+                                #foreach($item in $requestDTO)
+                                 <li class="am-g am-list-item-dated">
+                                  <a href="javascript:void(0);" class="am-list-item-hd " style="padding-right:60%" >$!item.getValue("name")</a>
+                                  <label class="am-list-date" style="position: absolute;right:25%" >$!item.getValue("rule")</label>
+                                  <span class="am-list-date">$!item.getValue("priority")</span>
+                                 </li>
+                                 #end
+                            </ul>
+                         </div>
+                    </div>
+                </div>
+                <div class="am-tab-panel #if(${requestDTO.size()} <= 0)am-active#end">
+                    <form action="$PropertyConfigurer.getContextPropertyStr("context_url")/addStrategy" class="am-form am-form-horizontal" data-am-validator style="margin-top:20px;">
+                        <input type="hidden" name="module_token" value="$!module_auth_token"/>
+                        <div class="am-form-group">
+                            <label for="name" class="am-u-sm-3 am-form-label am-sm-only-text-right">名称：</label>
+                            <div class="am-u-sm-8  am-u-end">
+                              <input type="text" id="name" name="name" value="$!requestDTO.getValue("id")" required placeholder="请输入策略名称">
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="priority" class="am-u-sm-3 am-form-label am-sm-only-text-right" style="padding:10px;">优先级：</label>
+                            <div class="am-u-sm-8 am-u-end">
+                              <input type="number" id="priority" name="priority" min="1" max="12" required placeholder="请输入优先级1 - 12">
+                            </div>
+                        </div>
+                        <div class="am-form-group btn-toolbar-c">
+                            <label for="rule" class="am-u-sm-3 am-form-label am-sm-only-text-right">规则：</label>
+                            <div class="am-u-sm-8 am-u-end">
+                            <div class="am-btn-toolbar">
+                              <div class="am-btn-group am-btn-group-xs am-btn-group-justify">
+                                <button type="button" ev="newTask()" class="am-btn am-btn-default am-btn-xs" style="margin:2px">最新任务</button>
+                                <button type="button" ev="newBug()" class="am-btn am-btn-default am-btn-xs" style="margin:2px">最新BUG</button>
+                                <button type="button" ev="issueid" class="am-btn am-btn-default am-btn-xs" style="margin:2px">问题ID</button>
+                              </div>
+                            </div>
+                             <textarea class="" rows="5" id="rule" placeholder="请选择规则" required name="rule"></textarea>
+                            </div>
+                        </div>
+                    
+                        <button type="submit" class="am-btn am-center am-radius" >保存</button>
+                    </form>
+                </div>
+        </div>
+        #parse("nav.vm")
+    </div>
+
+    <script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/jquery.min.js"></script>
+    <script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/amazeui.js"></script>
+    <script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/handlebars.min.js"></script>
+    <script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/amazeui.widgets.helper.js"></script>
+
+    <script>
+    
+        $(function(){
+            $(".btn-toolbar-c button").on("click",function(){
+                var rule = $("#rule").val();
+                var value = $(this).attr("ev");
+                if(value == "issueid"){
+                    value += "=请填写具体问题ID号"
+                }
+                if(rule != ""){
+                    if(rule.indexOf(value) != -1){
+                        return;
+                    }
+                    rule += ",";
+                }
+                $("#rule").val(rule + value)
+            })
+        })
+    
+    </script>
+</body>
+</html>

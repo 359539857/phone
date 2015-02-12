@@ -1,0 +1,116 @@
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>工时管理</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png"
+	href="AmazeUI-2.2.1/assets/i/favicon.png">
+<link rel="stylesheet" href="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/css/amazeui.min.css">
+<link rel="stylesheet" href="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/css/app.css">
+</head>
+<body>
+	<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 不提供支持。 请 <a
+  href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+	<div >
+		#parse("header.vm")
+		<div class="content">
+		
+			<div class="am-tabs am-tabs-d2" data-am-widget="tabs" style="padding: 0px;margin: 0px;">
+  				<ul class="am-tabs-nav am-cf">
+   				 <li class="am-active"><a href="javascript: void(0)">最近七天</a></li>
+   				 <li class=""><a href="javascript: void(0)">最近一月</a></li>
+  				</ul>
+
+  				<div class="am-tabs-bd" style="border:0px solid #FFFFFF;">
+    				<div class="am-tab-panel am-active">
+    					<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+			 			 <!--列表标题-->
+			  				<div class="am-list-news-hd am-cf" >
+			   				 <!--带更多链接-->
+			  				  <a href="javascript:void(0);" class="">
+			    				  <h2>问题</h2>
+			  				  </a>
+			  				  <a href="javascript:void(0);" style="margin-left:60%" class="">
+			     				 <h2>工时</h2>
+			   				  </a>
+			  				  <a href="javascript:void(0);" class=" am-fr">
+			    				  <h2>日期</h2>
+			    			  </a>
+						  </div>
+			  
+			 		      <div class="am-list-news-bd" >
+			  			 	 <ul class="am-list">
+			    				#foreach($item in $sevenhourList)
+			     				 <li class="am-g am-list-item-dated">
+			      				  <a href="javascript:void(0);" class="am-list-item-hd " style="padding-right:60%" >$!item.getValue("subject")</a>
+			      				  <label class="am-list-date" style="position: absolute;right:35%" >$!item.getValue("hour")</label>
+			       				  <span class="am-list-date">$!item.getValue("spentOn")</span>
+			     				 </li>
+			    		  	#end
+			    			</ul>
+			  		     </div>
+					</div>
+    		  </div>
+   			  	<div class="am-tab-panel">
+    					<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+			 			 <!--列表标题-->
+			  				<div class="am-list-news-hd am-cf" >
+			   				 <!--带更多链接-->
+			  				  <a href="javascript:void(0);" class="">
+			    				  <h2>问题</h2>
+			  				  </a>
+			  				  <a href="javascript:void(0);" style="margin-left:60%" class="">
+			     				 <h2>工时</h2>
+			   				  </a>
+			  				  <a href="javascript:void(0);" class=" am-fr">
+			    				  <h2>日期</h2>
+			    			  </a>
+						  </div>
+			  
+			 		      <div class="am-list-news-bd">
+			  			 	 <ul class="am-list month-hour-list">
+			    				#foreach($item in $monthhourList)
+			     				 <li class="am-g am-list-item-dated">
+			      				  <a href="javascript:void(0);" class="am-list-item-hd " style="padding-right:60%" >$!item.getValue("subject")</a>
+			      				  <label class="am-list-date" style="position: absolute;right:35%" >$!item.getValue("hour")</label>
+			       				  <span class="am-list-date">$!item.getValue("spentOn")</span>
+			     				 </li>
+			    		  	#end
+			    			</ul>
+			  		     </div>
+					</div>
+			</div>
+		</div>
+		#parse("nav.vm")
+	</div>
+
+	<script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/jquery.min.js"></script>
+	<script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/amazeui.js"></script>
+	<script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/handlebars.min.js"></script>
+	<script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/amazeui.widgets.helper.js"></script>
+
+	<script>
+		$(".month-hour-list li").each(function(){
+			$(this).on('inview.scrollspy.amui', function() {
+   				$(this).show();
+   				console.log("fdsfds");
+ 			 }).on('outview.scrollspy.amui', function() {
+   				 $(this).hide();
+   				 console.log("3432");
+  			});
+		});
+	</script>
+</body>
+</html>

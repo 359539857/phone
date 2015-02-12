@@ -1,0 +1,113 @@
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Amaze UI Widget</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png"
+	href="AmazeUI-2.2.1/assets/i/favicon.png">
+<link rel="stylesheet" href="AmazeUI-2.2.1/assets/css/amazeui.min.css">
+<link rel="stylesheet" href="AmazeUI-2.2.1/assets/css/app.css">
+</head>
+<body>
+	<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 不提供支持。 请 <a
+  href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+	<div class=".am-container">
+		<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+		  <div class="am-header-left am-header-nav">
+		    <a href="index.html" class="">
+		      <i class="am-header-icon am-icon-home"></i>
+		    </a>
+		  </div>
+		  <h1 class="am-header-title">
+		  	<i class="am-header-icon am-icon-plus"></i>
+		    <a href="javascript:void(0);" class="">工时查询</a>
+		  </h1>
+		</header>
+		<div class="content">
+			<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+			  <!--列表标题-->
+			  <div class="am-list-news-hd am-cf">
+			    <!--带更多链接-->
+			    <a href="##" class="">
+			      <h2>描述</h2>
+			    </a>
+			    <a href="##" style="margin-left:60%" class="">
+			      <h2>工时</h2>
+			    </a>
+			    <a href="##" class=" am-fr">
+			      <h2>日期</h2>
+			    </a>
+			  </div>
+			  <div class="am-list-news-bd">
+			    <ul class="am-list">
+			      <li class="am-g am-list-item-dated">
+			        <a href="##" class="am-list-item-hd ">我很囧，你保重....晒晒旅行中的那些囧！</a>
+			        <span class="am-list-date">2013-09-18</span>
+			      </li>
+			      <li class="am-g am-list-item-dated">
+			        <a href="##" class="am-list-item-hd ">我最喜欢的一张画</a>
+			        <span class="am-list-date">2013-10-14</span>
+			      </li>
+			      <li class="am-g am-list-item-dated">
+			        <a href="##" class="am-list-item-hd ">“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！</a>
+			        <span class="am-list-date">2013-11-18</span>
+			      </li>
+			    </ul>
+			  </div>
+			</div>
+		</div>
+		<div  data-am-widget="navbar" class="am-navbar am-cf am-navbar-default ">
+			<ul class="am-navbar-nav am-cf am-avg-sm-4">
+				<li>
+					<a href="add.html" class=""> 
+						<span class="am-icon-plus"></span> <span class="am-navbar-label">添加</span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" class="am-btn-secondary"> 
+						<span class="am-icon-search"></span> <span class="am-navbar-label">查询</span>
+					</a>
+				</li>
+				<li>
+					<a href="zhineng.html" class=""> 
+						<span class="am-icon-tachometer"></span> <span class="am-navbar-label">智能</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<script src="AmazeUI-2.2.1/assets/js/jquery.min.js"></script>
+	<script src="AmazeUI-2.2.1/assets/js/amazeui.js"></script>
+	<script src="AmazeUI-2.2.1/assets/js/handlebars.min.js"></script>
+	<script src="AmazeUI-2.2.1/assets/js/amazeui.widgets.helper.js"></script>
+	<script>
+		$(function() {
+			var url = URL.auth_url;
+			$.get(url,function(data){
+				try{
+					if(data.code == 200){
+						
+					}else{
+						
+					}
+				}catch(e){
+					console.log(e);
+					
+				}
+			},"json");
+		})
+	</script>
+</body>
+</html>

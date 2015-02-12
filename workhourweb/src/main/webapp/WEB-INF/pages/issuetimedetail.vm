@@ -1,0 +1,75 @@
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>耗时 - 详情</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png"
+    href="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/i/favicon.png">
+<link rel="stylesheet" href="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/css/amazeui.min.css">
+<link rel="stylesheet" href="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/css/app.css">
+</head>
+<body>
+    <!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 不提供支持。 请 <a
+  href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+    <div>
+         #parse("header.vm")
+        <div class="context">
+                    <div data-am-widget="list_news" class="am-list-news am-list-news-default">
+                         <!--列表标题-->
+                            <div class="am-list-news-hd am-cf" >
+                             <!--带更多链接-->
+                              <a href="javascript:void(0);" class="">
+                                 <h2>日期</h2>
+                              </a>
+                              <a href="javascript:void(0);"  style="position: absolute;right:30%" class="">
+                                 <h2>登记者</h2>
+                              </a>
+                              <a href="javascript:void(0);" class="am-fr">
+                                  <h2>工时</h2>
+                              </a>
+                          </div>
+              
+                          <div class="am-list-news-bd">
+                             <ul class="am-list month-hour-list">
+                                #foreach($item in $requestDTO)
+                                 <li class="am-g am-list-item-dated">
+                                   <a href="javascript:void(0);" class="am-list-item-hd "  style="padding-right:60%" >$DateUtils.format($!item.spentOn,"yyyy-MM-dd")</a>
+                                   <span class="am-list-date am-list-item-hd"  style="position: absolute;right:30%">$item.userName</span>
+                                   <label class="am-list-date am-fr" >$!item.hours</label>
+                                 </li>
+                            #end
+                            </ul>
+                         </div>
+                    </div>
+        
+        </div>
+        #parse("nav.vm")
+    </div>
+
+    <script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/jquery.min.js"></script>
+    <script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/amazeui.js"></script>
+    <script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/handlebars.min.js"></script>
+    <script src="$PropertyConfigurer.getContextPropertyStr("context_url")/AmazeUI-2.2.1/assets/js/amazeui.widgets.helper.js"></script>
+    <script>
+        
+        $(function(){
+            $(".search-form-btn").on("click",function(){
+                $(".search-form").submit();
+            });
+        })
+    
+    </script>
+</body>
+</html>

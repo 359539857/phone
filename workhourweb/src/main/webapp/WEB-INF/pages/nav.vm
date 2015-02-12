@@ -1,0 +1,25 @@
+<div  data-am-widget="navbar" class="am-navbar am-cf am-navbar-default ">
+			<ul class="am-navbar-nav am-cf am-avg-sm-4" style="padding:0px;">
+				<li>
+					<a href="$PropertyConfigurer.getContextPropertyStr("context_url")/loadData?operatetype=getIssuePageList&forword=addlist" #if($dto.getValue("forword") == "addlist" || $dto.getValue("forword") == "add" || $dto.getValue("forword") == "issuetimedetail")class="am-btn-secondary"#end> 
+						<span class="am-icon-plus"></span> <span class="am-navbar-label">添加</span>
+					</a>
+				</li>
+				<li>
+					<a href="$PropertyConfigurer.getContextPropertyStr("context_url")/loadData?operatetype=getHourPageList&forword=search"  #if($dto.getValue("forword") == "search")class="am-btn-secondary"#end> 
+						<span class="am-icon-search"></span> <span class="am-navbar-label">查询</span>
+					</a>
+				</li>
+				<li>
+					<a href="$PropertyConfigurer.getContextPropertyStr("context_url")/loadData?operatetype=getStrategyPageList&forword=zhineng"  #if($dto.getValue("forword") == "zhineng")class="am-btn-secondary"#end> 
+						<span class="am-icon-tachometer"></span> <span class="am-navbar-label">智能</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		<script>
+		  addEventListener('load', function(){   
+            setTimeout(function(){ window.scrollTo(0, 0); }, 100);   
+          }); 
+		</script>
